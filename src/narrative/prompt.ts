@@ -15,8 +15,10 @@ export const NARRATIVE_SYSTEM_PROMPT = `당신은 결정론적 TypeScript 엔진
 
 export function buildNarrativePrompt(request: NarrativeRequest): string {
   const question = request.question?.trim() || "특정 질문 없음 — 전체 흐름 중심";
+  const profile = request.profile === undefined ? "이름 정보 없음" : JSON.stringify(request.profile);
   return [
     "아래 자료만 근거로 장문 상담문을 작성하세요.",
+    `<user_profile>${profile}</user_profile>`,
     `<user_question>${question}</user_question>`,
     `<deterministic_reading>${JSON.stringify(request.reading)}</deterministic_reading>`,
   ].join("\n");

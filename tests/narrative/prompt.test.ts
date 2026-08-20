@@ -9,9 +9,11 @@ describe("AI narrative prompt boundary", () => {
 
   it("delimits user questions from deterministic reading data", () => {
     const prompt = buildNarrativePrompt({
+      profile: { name: "김결", hanjaName: "金結" },
       question: "관계에서 무엇을 점검할까요?",
       reading: { core: {} as never, sewoon: {} as never, interpretation: {} as never },
     });
+    expect(prompt).toContain('<user_profile>{"name":"김결","hanjaName":"金結"}</user_profile>');
     expect(prompt).toContain("<user_question>관계에서 무엇을 점검할까요?</user_question>");
     expect(prompt).toContain("<deterministic_reading>");
   });

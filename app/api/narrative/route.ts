@@ -39,5 +39,14 @@ function isNarrativeRequest(value: unknown): value is NarrativeRequest {
   if (typeof value !== "object" || value === null || !("reading" in value)) return false;
   const candidate = value as Record<string, unknown>;
   if (typeof candidate.reading !== "object" || candidate.reading === null) return false;
-  return candidate.question === undefined || (typeof candidate.question === "string" && candidate.question.length <= 500);
+  const questionIsValid = candidate.question === undefined || (typeof candidate.question === "string" && candidate.question.length <= 500);
+  const profileIsValid = candidate.profile === undefined || (
+    typeof candidate.profile === "object" && candidate.profile !== null
+    && typeof (candidate.profile as Record<string, unknown>).name === "string"
+    && ((candidate.profile as Record<string, unknown>).name as string).length <= 40
+    && ((candidate.profile as Record<string, unknown>).hanjaName === undefined
+      || (typeof (candidate.profile as Record<string, unknown>).hanjaName === "string"
+        && ((candidate.profile as Record<string, unknown>).hanjaName as string).length <= 40))
+  );
+  return questionIsValid && profileIsValid;
 }

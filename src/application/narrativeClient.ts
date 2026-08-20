@@ -1,8 +1,13 @@
 import type { SajuReading } from "./reading";
+import type { UserProfile } from "./readingFlow";
 import type { NarrativeRequest, NarrativeResponse } from "../narrative/types";
 
-export async function requestNarrative(reading: SajuReading, question: string): Promise<NarrativeResponse> {
-  const payload: NarrativeRequest = { reading, ...(question.trim() === "" ? {} : { question: question.trim() }) };
+export async function requestNarrative(reading: SajuReading, question: string, profile?: UserProfile): Promise<NarrativeResponse> {
+  const payload: NarrativeRequest = {
+    reading,
+    ...(question.trim() === "" ? {} : { question: question.trim() }),
+    ...(profile ? { profile: { name: profile.name, ...(profile.hanjaName ? { hanjaName: profile.hanjaName } : {}) } } : {}),
+  };
   const response = await fetch("/api/narrative", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
