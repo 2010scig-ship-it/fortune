@@ -3,6 +3,8 @@ node_modules/
 coverage/
 dist/
 .next/
+*.tsbuildinfo
+.vercel/
 
 .env
 .env.*

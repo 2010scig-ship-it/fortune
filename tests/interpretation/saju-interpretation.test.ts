@@ -45,14 +45,14 @@ describe("rule-based Saju interpretation", () => {
     expect(core.fourPillars.hour).toBeUndefined();
     expect(result.categories.personality.length).toBeGreaterThan(0);
     expect(result.categories.fortune).toEqual([]);
-    expect(result.limitations.some((text) => text.includes("세운이 제공되지 않아"))).toBe(true);
+    expect(result.limitations.some((text) => text.includes("올해의 흐름을 계산할 자료가 없어"))).toBe(true);
   });
 
   it("keeps health and future wording non-diagnostic and non-certain", () => {
     const result = interpretSaju({ core: calculateSajuCore(birthData), sewoon: getSewoon(2026) });
     const allText = [...Object.values(result.categories).flat().map((point) => point.text), ...result.limitations].join(" ");
     expect(allText).not.toMatch(/반드시 (성공|실패)|사고가 납니다|큰 병에 걸립니다|헤어지게 됩니다|투자하면 돈을 법니다/);
-    expect(result.categories.health.some((point) => point.text.includes("의학적 결핍을 뜻하지 않"))).toBe(true);
+    expect(result.categories.health.some((point) => point.text.includes("이것이 몸에 문제가 있거나 특정 기능이 부족하다는 뜻은 아닙니다"))).toBe(true);
     expect(result.limitations.some((text) => text.includes("의료·법률·투자"))).toBe(true);
   });
 

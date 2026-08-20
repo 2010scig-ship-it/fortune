@@ -3,38 +3,38 @@ import type { DrawnTarotCard, TarotSpreadDefinition, TarotSpreadDraw, TarotSprea
 export const TAROT_SPREADS = [
   {
     id: "one-card",
-    name: "One Card",
+    name: "한 장의 메시지",
     positions: [
-      { id: "core-message", label: "Core Message", prompt: "질문에서 가장 중요하게 살펴볼 핵심" },
+      { id: "core-message", label: "핵심 메시지", prompt: "지금 가장 중요하게 바라볼 주제를 보여 주는 자리입니다." },
     ],
   },
   {
     id: "three-timeline",
-    name: "Three Cards — Timeline",
+    name: "과거·현재·앞으로의 흐름",
     positions: [
-      { id: "past", label: "Past", prompt: "현재 상황에 이어진 배경" },
-      { id: "present", label: "Present", prompt: "지금 가장 두드러진 조건" },
-      { id: "future", label: "Future", prompt: "현재 선택이 이어질 가능성 있는 방향" },
+      { id: "past", label: "과거", prompt: "현재 상황에 영향을 준 배경을 돌아보는 자리입니다." },
+      { id: "present", label: "현재", prompt: "지금 가장 크게 작용하는 마음과 조건을 살펴보는 자리입니다." },
+      { id: "future", label: "앞으로의 흐름", prompt: "지금의 선택을 이어 갈 때 나타날 수 있는 방향을 비춰 보는 자리입니다." },
     ],
   },
   {
     id: "three-guidance",
-    name: "Three Cards — Guidance",
+    name: "상황·조언·방향",
     positions: [
-      { id: "situation", label: "Situation", prompt: "질문의 현재 상황" },
-      { id: "advice", label: "Advice", prompt: "현실적으로 점검할 행동과 태도" },
-      { id: "outcome", label: "Outcome", prompt: "현재 접근이 이어질 경우의 가능성 있는 방향" },
+      { id: "situation", label: "현재 상황", prompt: "질문과 관련해 지금 가장 크게 작용하는 흐름을 보여 주는 자리입니다." },
+      { id: "advice", label: "도움이 될 태도", prompt: "지금 현실적으로 취할 수 있는 태도와 행동을 살펴보는 자리입니다." },
+      { id: "outcome", label: "앞으로의 방향", prompt: "현재의 접근을 이어 갈 때 어떤 방향으로 흘러갈지 살펴보는 자리입니다." },
     ],
   },
   {
     id: "five-card",
-    name: "Five Cards",
+    name: "다섯 장의 흐름",
     positions: [
-      { id: "current-situation", label: "Current Situation", prompt: "현재 상황의 중심" },
-      { id: "obstacle", label: "Obstacle", prompt: "진행을 어렵게 만드는 조건" },
-      { id: "hidden-influence", label: "Hidden Influence", prompt: "아직 충분히 의식하지 못한 영향" },
-      { id: "advice", label: "Advice", prompt: "현실적으로 점검할 행동과 태도" },
-      { id: "likely-direction", label: "Likely Direction", prompt: "현재 흐름이 이어질 가능성 있는 방향" },
+      { id: "current-situation", label: "현재 상황", prompt: "질문의 중심에 있는 상황을 보여 주는 자리입니다." },
+      { id: "obstacle", label: "걸림돌", prompt: "진행을 어렵게 만드는 조건을 살펴보는 자리입니다." },
+      { id: "hidden-influence", label: "미처 보지 못한 점", prompt: "아직 충분히 알아차리지 못한 영향을 살펴보는 자리입니다." },
+      { id: "advice", label: "도움이 될 태도", prompt: "지금 현실적으로 취할 수 있는 태도와 행동을 살펴보는 자리입니다." },
+      { id: "likely-direction", label: "앞으로의 방향", prompt: "현재의 선택을 이어 갈 때 나타날 수 있는 방향을 비춰 보는 자리입니다." },
     ],
   },
 ] as const satisfies readonly TarotSpreadDefinition[];

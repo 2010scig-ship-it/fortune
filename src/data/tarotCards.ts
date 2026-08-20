@@ -54,10 +54,10 @@ interface SuitProfile {
 }
 
 const SUITS = [
-  { id: "wands", name: "Wands", upright: "행동·동기·창조성", reversed: "행동 에너지의 지연 또는 과열", themes: ["CAREER", "EXPANSION"] },
-  { id: "cups", name: "Cups", upright: "감정·관계·공감", reversed: "감정 흐름의 막힘 또는 과잉", themes: ["RELATIONSHIP"] },
-  { id: "swords", name: "Swords", upright: "사고·결정·갈등 조정", reversed: "생각의 혼선 또는 해결되지 않은 긴장", themes: ["LEARNING", "CONFLICT"] },
-  { id: "pentacles", name: "Pentacles", upright: "자원·현실성·지속성", reversed: "자원 관리의 불균형 또는 지연", themes: ["MONEY", "STABILITY"] },
+  { id: "wands", name: "Wands", upright: "새로운 일을 시작하고 움직이려는 힘", reversed: "의욕은 있지만 속도나 방향이 맞지 않는 상태", themes: ["CAREER", "EXPANSION"] },
+  { id: "cups", name: "Cups", upright: "감정과 관계에서 서로의 마음을 이해하는 일", reversed: "감정이 막히거나 한쪽으로 치우친 상태", themes: ["RELATIONSHIP"] },
+  { id: "swords", name: "Swords", upright: "생각을 정리하고 결정하며 갈등을 풀어 가는 일", reversed: "생각이 복잡해 결정을 내리기 어려운 상태", themes: ["LEARNING", "CONFLICT"] },
+  { id: "pentacles", name: "Pentacles", upright: "돈과 일, 생활 기반을 현실적으로 돌보는 일", reversed: "돈이나 시간, 생활 리듬을 안정적으로 관리하기 어려운 상태", themes: ["MONEY", "STABILITY"] },
 ] as const satisfies readonly SuitProfile[];
 
 interface RankProfile {
@@ -71,37 +71,36 @@ interface RankProfile {
 }
 
 const RANKS = [
-  { id: "ace", name: "Ace", number: 1, upright: "새로운 씨앗과 시작 가능성", reversed: "시작 조건의 부족 또는 지연", themes: ["OPPORTUNITY"] },
-  { id: "two", name: "Two", number: 2, upright: "두 선택지 사이의 조율", reversed: "선택 회피 또는 균형 상실", themes: ["CAUTION"] },
-  { id: "three", name: "Three", number: 3, upright: "협력과 초기 확장", reversed: "협업의 어긋남 또는 성장 지연", themes: ["EXPANSION", "RELATIONSHIP"] },
-  { id: "four", name: "Four", number: 4, upright: "기반을 고정하고 유지하는 단계", reversed: "정체 또는 기반 재정비", themes: ["STABILITY"], reversedThemes: ["REST"] },
-  { id: "five", name: "Five", number: 5, upright: "긴장과 변화 압력", reversed: "갈등 회복 또는 남은 긴장", themes: ["CONFLICT", "CHANGE"] },
-  { id: "six", name: "Six", number: 6, upright: "회복과 상호 지원", reversed: "주고받음의 불균형", themes: ["RELATIONSHIP", "STABILITY"] },
-  { id: "seven", name: "Seven", number: 7, upright: "입장을 지키며 재평가하는 과정", reversed: "방어 피로 또는 판단 흔들림", themes: ["CAUTION", "INDEPENDENCE"] },
-  { id: "eight", name: "Eight", number: 8, upright: "숙련과 움직임의 가속", reversed: "반복의 정체 또는 속도 혼선", themes: ["CHANGE", "LEARNING"] },
-  { id: "nine", name: "Nine", number: 9, upright: "축적된 경험과 지속력", reversed: "피로 누적 또는 마무리 불안", themes: ["STABILITY", "INDEPENDENCE"], reversedThemes: ["REST"] },
-  { id: "ten", name: "Ten", number: 10, upright: "한 주기의 완성과 책임", reversed: "과부하 또는 끝맺음 지연", themes: ["STABILITY", "CHANGE"], reversedThemes: ["REST"] },
-  { id: "page", name: "Page", upright: "호기심과 새로운 학습", reversed: "미숙한 전달 또는 산만한 탐색", themes: ["LEARNING", "OPPORTUNITY"] },
-  { id: "knight", name: "Knight", upright: "목표를 향한 적극적인 추구", reversed: "성급함 또는 추진력의 분산", themes: ["CHANGE", "CAREER"] },
-  { id: "queen", name: "Queen", upright: "내적 숙련과 돌봄 있는 영향력", reversed: "자기 돌봄 부족 또는 영향력의 위축", themes: ["LEADERSHIP", "RELATIONSHIP"] },
-  { id: "king", name: "King", upright: "외적 책임과 안정된 리더십", reversed: "권한의 경직 또는 책임 회피", themes: ["LEADERSHIP", "STABILITY"] },
+  { id: "ace", name: "Ace", number: 1, upright: "새롭게 시작할 가능성이 열리는 단계", reversed: "시작하기 전에 조건을 더 갖춰야 하는 상태", themes: ["OPPORTUNITY"] },
+  { id: "two", name: "Two", number: 2, upright: "두 선택지를 비교하고 균형을 잡는 단계", reversed: "결정을 미루거나 균형을 잃기 쉬운 상태", themes: ["CAUTION"] },
+  { id: "three", name: "Three", number: 3, upright: "다른 사람과 힘을 모아 가능성을 넓히는 단계", reversed: "협력이 어긋나거나 성장이 늦어지는 상태", themes: ["EXPANSION", "RELATIONSHIP"] },
+  { id: "four", name: "Four", number: 4, upright: "지금 가진 기반을 안정적으로 지키는 단계", reversed: "멈춰 있는 부분을 다시 정비해야 하는 상태", themes: ["STABILITY"], reversedThemes: ["REST"] },
+  { id: "five", name: "Five", number: 5, upright: "갈등이나 변화의 압력이 커지는 단계", reversed: "갈등이 가라앉고 있지만 아직 긴장이 남은 상태", themes: ["CONFLICT", "CHANGE"] },
+  { id: "six", name: "Six", number: 6, upright: "도움을 주고받으며 안정을 되찾는 단계", reversed: "한쪽만 주거나 받는 관계가 되기 쉬운 상태", themes: ["RELATIONSHIP", "STABILITY"] },
+  { id: "seven", name: "Seven", number: 7, upright: "내 입장을 지키면서 다시 판단하는 단계", reversed: "버티느라 지치거나 판단이 흔들리는 상태", themes: ["CAUTION", "INDEPENDENCE"] },
+  { id: "eight", name: "Eight", number: 8, upright: "익숙해진 일을 더 빠르게 추진하는 단계", reversed: "같은 일이 반복되거나 속도를 맞추기 어려운 상태", themes: ["CHANGE", "LEARNING"] },
+  { id: "nine", name: "Nine", number: 9, upright: "쌓아 온 경험을 바탕으로 끝까지 이어 가는 단계", reversed: "피로가 쌓여 마무리를 불안하게 느끼는 상태", themes: ["STABILITY", "INDEPENDENCE"], reversedThemes: ["REST"] },
+  { id: "ten", name: "Ten", number: 10, upright: "한 단계를 마무리하고 책임을 정리하는 시점", reversed: "할 일이 너무 많아 마무리가 늦어지는 상태", themes: ["STABILITY", "CHANGE"], reversedThemes: ["REST"] },
+  { id: "page", name: "Page", upright: "호기심을 따라 배우고 새로운 소식을 받아들이는 단계", reversed: "생각이 흩어지거나 말을 충분히 다듬지 못한 상태", themes: ["LEARNING", "OPPORTUNITY"] },
+  { id: "knight", name: "Knight", upright: "목표를 향해 적극적으로 움직이는 단계", reversed: "서두르거나 여러 방향으로 힘이 흩어지는 상태", themes: ["CHANGE", "CAREER"] },
+  { id: "queen", name: "Queen", upright: "경험을 바탕으로 자신과 주변을 세심하게 돌보는 힘", reversed: "자신을 돌볼 여유가 부족해 영향력이 줄어든 상태", themes: ["LEADERSHIP", "RELATIONSHIP"] },
+  { id: "king", name: "King", upright: "책임을 맡고 안정적으로 방향을 이끄는 힘", reversed: "자기 방식만 고집하거나 책임을 피하기 쉬운 상태", themes: ["LEADERSHIP", "STABILITY"] },
 ] as const satisfies readonly RankProfile[];
 
 function uniqueThemes(themes: readonly Theme[]): readonly Theme[] {
   return [...new Set(themes)];
 }
 
-function categoryPrompts(focus: string, stage: string): TarotCard["categories"] {
+function categoryPrompts(): TarotCard["categories"] {
   return {
-    love: [`관계에서는 ${focus}의 관점에서 ${stage}을(를) 점검해볼 수 있습니다.`],
-    career: [`일에서는 ${focus}의 관점에서 ${stage}을(를) 점검해볼 수 있습니다.`],
-    wealth: [`자원 관리에서는 ${focus}의 관점에서 ${stage}을(를) 점검해볼 수 있습니다.`],
-    relationship: [`대인관계에서는 ${focus}의 관점에서 ${stage}을(를) 점검해볼 수 있습니다.`],
+    love: ["사랑에 관한 질문이라면, 상대의 마음을 추측하기보다 원하는 관계와 지켜야 할 기준을 먼저 적어 보세요."],
+    career: ["일과 진로에 관한 질문이라면, 지금 바꿀 수 있는 한 가지 행동과 더 알아봐야 할 조건을 나누어 보세요."],
+    wealth: ["돈에 관한 질문이라면, 기대하는 이익과 감당할 수 있는 손실을 숫자로 확인한 뒤 결정하세요."],
+    relationship: ["관계에 관한 질문이라면, 내 의도와 상대가 실제로 들은 말 사이에 차이가 없는지 확인해 보세요."],
   };
 }
 
 function makeMajor(definition: MajorDefinition): CardWithThemes {
-  const primary = definition.upright[0]!;
   return {
     card: {
       id: `major-${String(definition.number).padStart(2, "0")}-${definition.slug}`,
@@ -109,7 +108,7 @@ function makeMajor(definition: MajorDefinition): CardWithThemes {
       arcana: "major",
       number: definition.number,
       meanings: { upright: definition.upright, reversed: definition.reversed },
-      categories: categoryPrompts(primary, "현재 선택의 기준"),
+      categories: categoryPrompts(),
     },
     themes: {
       upright: definition.themes,
@@ -132,7 +131,7 @@ function makeMinor(suit: SuitProfile, rank: RankProfile): CardWithThemes {
         upright: [suit.upright, rank.upright],
         reversed: [suit.reversed, rank.reversed],
       },
-      categories: categoryPrompts(suit.upright, rank.upright),
+      categories: categoryPrompts(),
     },
     themes: {
       upright: uniqueThemes([...suit.themes, ...rank.themes]),

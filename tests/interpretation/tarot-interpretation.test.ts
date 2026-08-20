@@ -20,6 +20,9 @@ describe("rule-based tarot interpretation", () => {
     expect(result.keywords).toEqual(draw.cards[1]!.drawn.card.meanings.reversed);
     expect(result.categoryPrompts.length).toBeGreaterThan(0);
     expect(result.text).toContain("역방향");
+    expect(result.text).toContain("지금 현실적으로 취할 수 있는 태도와 행동을 살펴보는 자리입니다.");
+    expect(result.text).not.toMatch(/[이가은는을를]\([가는를]\)|상징적 메시지|Outcome 위치/);
+    expect(result.text).toContain("일과 진로에 관한 질문이라면");
   });
 
   it("preserves spread order and deduplicates mapped themes", () => {
@@ -28,6 +31,20 @@ describe("rule-based tarot interpretation", () => {
     expect(new Set(result.themes).size).toBe(result.themes.length);
     expect(result.themes).toContain("CAUTION");
     expect(result.methodology).toBe("phase-4-rule-based-v1");
+  });
+
+  it("turns a reversed Page of Wands outcome into plain Korean guidance", () => {
+    const pageOfWands = RWS_DECK.find((card) => card.id === "minor-wands-page");
+    const outcome = spread.positions.find((position) => position.id === "outcome");
+    expect(pageOfWands).toBeDefined();
+    expect(outcome).toBeDefined();
+
+    const result = interpretCard({ card: pageOfWands!, orientation: "reversed" }, outcome!, "wealth");
+    expect(result.text).toContain("'앞으로의 방향' 자리에 역방향으로 나왔습니다");
+    expect(result.text).toContain("의욕은 있지만 속도나 방향이 맞지 않는 상태");
+    expect(result.text).toContain("생각이 흩어지거나 말을 충분히 다듬지 못한 상태");
+    expect(result.text).toContain("기대하는 이익과 감당할 수 있는 손실을 숫자로 확인한 뒤 결정하세요");
+    expect(result.text).not.toMatch(/Outcome|은\(는\)|을\(를\)|상징적 메시지|행동·동기·창조성/);
   });
 
   it("keeps wording non-certain and includes decision limitations", () => {

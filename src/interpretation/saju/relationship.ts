@@ -1,4 +1,4 @@
-import { RELATIONSHIP_BALANCE_TEXT, type YinYangBalance } from "../../data/interpretations";
+import { relationshipBalanceText, type YinYangBalance } from "../../data/interpretations";
 import { yinYangBalance } from "./helpers";
 import { evaluateRules } from "./rules";
 import type { InterpretationRule, SajuInterpretationInput } from "./types";
@@ -13,7 +13,7 @@ const RELATIONSHIP_RULES = BALANCES.map((balance): InterpretationRule => ({
   evaluate: ({ core }) => {
     const result = yinYangBalance(core);
     return result.balance === balance ? {
-      text: RELATIONSHIP_BALANCE_TEXT[balance],
+      text: relationshipBalanceText(balance, result.yin, result.yang),
       evidence: [
         { key: "visibleYin", value: String(result.yin) },
         { key: "visibleYang", value: String(result.yang) },

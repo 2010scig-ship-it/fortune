@@ -5,8 +5,8 @@ import type { CombinedReading, CombinedReadingInput, ThemeRelationshipSignal } f
 
 const LIMITATIONS = [
   "이 결과는 엔터테인먼트와 자기성찰을 위한 규칙 기반 통합 해석입니다.",
-  "Agreement는 두 체계가 같은 Theme을 표시했다는 뜻이며 실제 발생 확률이나 확신도를 높이지 않습니다.",
-  "Complement와 Tension은 명시된 Theme 관계 규칙이며 미래의 성공·실패를 예측하지 않습니다.",
+  "두 리딩에 같은 주제가 나와도 실제로 그 일이 일어날 가능성이 높아졌다는 뜻은 아닙니다.",
+  "함께 챙길 점과 충돌할 수 있는 점은 정해진 주제 비교 규칙으로 만든 참고용 조언이며, 미래의 성공이나 실패를 예측하지 않습니다.",
   "의료·법률·투자 등 중요한 결정은 이 결과만으로 판단하지 않아야 합니다.",
 ] as const;
 
