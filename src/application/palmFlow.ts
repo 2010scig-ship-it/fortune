@@ -12,6 +12,10 @@ export interface PalmImageDraft {
   readonly file: File;
   readonly previewUrl: string;
   readonly source: PalmImageSource;
+  readonly width?: number;
+  readonly height?: number;
+  readonly originalBytes?: number;
+  readonly optimizedBytes?: number;
 }
 
 export type PalmHandInputState =
@@ -60,4 +64,11 @@ export function palmInputSummary(state: PalmStepState): string {
   return PALM_SIDES
     .map((side) => `${PALM_SIDE_LABELS[side]} ${state.hands[side].status === "ready" ? "사진 있음" : "없음"}`)
     .join(" · ");
+}
+
+export function releasePalmPreviewUrls(state: PalmStepState, revoke: (url: string) => void): void {
+  for (const side of PALM_SIDES) {
+    const hand = state.hands[side];
+    if (hand.status === "ready") revoke(hand.image.previewUrl);
+  }
 }

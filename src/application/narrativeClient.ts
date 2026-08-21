@@ -1,12 +1,29 @@
-import type { SajuReading } from "./reading";
+import type { FullReading, SajuReading } from "./reading";
 import type { UserProfile } from "./readingFlow";
+import type { NameResult } from "../engine/name/types";
+import type { PalmResult } from "../engine/palm/types";
+import type { IntegratedReading } from "../interpretation/integrated/types";
 import type { NarrativeRequest, NarrativeResponse } from "../narrative/types";
 
-export async function requestNarrative(reading: SajuReading, question: string, profile?: UserProfile): Promise<NarrativeResponse> {
+export interface NarrativeSourceBundle {
+  readonly integratedReading?: IntegratedReading;
+  readonly nameResult?: NameResult;
+  readonly palmResult?: PalmResult;
+}
+
+export async function requestNarrative(
+  reading: SajuReading | FullReading,
+  question: string,
+  profile?: UserProfile,
+  sources: NarrativeSourceBundle = {},
+): Promise<NarrativeResponse> {
   const payload: NarrativeRequest = {
     reading,
     ...(question.trim() === "" ? {} : { question: question.trim() }),
     ...(profile ? { profile: { name: profile.name, ...(profile.hanjaName ? { hanjaName: profile.hanjaName } : {}) } } : {}),
+    ...(sources.integratedReading ? { integratedReading: sources.integratedReading } : {}),
+    ...(sources.nameResult ? { nameResult: sources.nameResult } : {}),
+    ...(sources.palmResult ? { palmResult: sources.palmResult } : {}),
   };
   const response = await fetch("/api/narrative", {
     method: "POST",

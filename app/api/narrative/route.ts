@@ -48,5 +48,12 @@ function isNarrativeRequest(value: unknown): value is NarrativeRequest {
       || (typeof (candidate.profile as Record<string, unknown>).hanjaName === "string"
         && ((candidate.profile as Record<string, unknown>).hanjaName as string).length <= 40))
   );
-  return questionIsValid && profileIsValid;
+  const integratedIsValid = candidate.integratedReading === undefined || isRecord(candidate.integratedReading);
+  const nameIsValid = candidate.nameResult === undefined || isRecord(candidate.nameResult);
+  const palmIsValid = candidate.palmResult === undefined || isRecord(candidate.palmResult);
+  return questionIsValid && profileIsValid && integratedIsValid && nameIsValid && palmIsValid;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

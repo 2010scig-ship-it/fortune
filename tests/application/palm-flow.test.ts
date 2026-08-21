@@ -4,6 +4,7 @@ import {
   countReadyPalmHands,
   createEmptyPalmStepState,
   palmInputSummary,
+  releasePalmPreviewUrls,
   selectPalmSide,
   setPalmImage,
 } from "../../src/application/palmFlow";
@@ -29,5 +30,19 @@ describe("palm step state", () => {
 
     const cleared = clearPalmImage(withLeft, "left");
     expect(countReadyPalmHands(cleared)).toBe(0);
+  });
+
+  it("releases only accepted preview URLs", () => {
+    const file = new File(["palm"], "left-palm.jpg", { type: "image/jpeg" });
+    const state = setPalmImage(createEmptyPalmStepState(), "left", {
+      file,
+      previewUrl: "blob:left",
+      source: "library",
+    });
+    const released: string[] = [];
+
+    releasePalmPreviewUrls(state, (url) => released.push(url));
+
+    expect(released).toEqual(["blob:left"]);
   });
 });
